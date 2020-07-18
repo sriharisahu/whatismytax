@@ -38,5 +38,5 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     const currentYear = new Date().getFullYear();
     expect(app.getCurrentYear()).toEqual(currentYear);
-  })
+  });
 });

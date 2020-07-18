@@ -16,15 +16,15 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.formgroup = this.formBuilder.group({
-      'firstName': [null, Validators.compose([Validators.required, Validators.pattern("^[a-zA-Z]+$")])],
-      'middleName': [null, Validators.pattern("^[a-zA-Z]+$")],
-      'lastName': [null, Validators.compose([Validators.required, Validators.pattern("^[a-zA-Z]+$")])],
-      'address': [null, Validators.compose([Validators.required, Validators.minLength(30), Validators.maxLength(100)])],
-      'dateOfBirth': [null, Validators.required],
-      'email': [null, Validators.compose([Validators.required, Validators.email])],
-      'phone': [null, Validators.compose([Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")])],
-      'grossIncome': [null, Validators.compose([Validators.required, Validators.pattern("^[0-9]+$")])],
-      'regime': ['old', null]
+      firstName: [null, Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z]+$')])],
+      middleName: [null, Validators.pattern('^[a-zA-Z]+$')],
+      lastName: [null, Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z]+$')])],
+      address: [null, Validators.compose([Validators.required, Validators.minLength(30), Validators.maxLength(100)])],
+      dateOfBirth: [null, Validators.required],
+      email: [null, Validators.compose([Validators.required, Validators.email])],
+      phone: [null, Validators.compose([Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')])],
+      grossIncome: [null, Validators.compose([Validators.required, Validators.pattern('^[0-9]+$')])],
+      regime: ['old', null]
     });
   }
 
@@ -32,9 +32,9 @@ export class DashboardComponent implements OnInit {
 /*     if (!form.valid) {
       return;
     } else { */
-      console.log("form", form);
+      console.log('form', form);
       const tax = this.taxCalulcatorService.getTax(form.grossIncome, form.regime);
-      console.log("tax:: ", tax);
-    //}
+      console.log('tax:: ', tax);
+    // }
   }
 }

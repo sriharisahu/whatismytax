@@ -5,8 +5,8 @@ import { IncomeSupplierComponent } from './income-supplier/income-supplier.compo
 
 
 const routes: Routes = [
-  { path: "", component: DashboardComponent },
-  { path: "income", component: IncomeSupplierComponent }
+  { path: '', component: DashboardComponent },
+  { path: 'income', component: IncomeSupplierComponent }
 ];
 
 @NgModule({
