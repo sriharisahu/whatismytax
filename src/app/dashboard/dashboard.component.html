@@ -1,5 +1,5 @@
 <div class="user-input">
-    <form [formGroup]="formgroup" (ngSubmit)="onFormSubmit(formgroup.value)">
+    <form [formGroup]="formgroup" (ngSubmit)="onFormSubmit(formgroup)">
         <fieldset>
             <div class="firstNameField">
                 <mat-form-field>
@@ -98,4 +98,7 @@
         </fieldset>
         <button mat-raised-button color="primary">Submit</button>
     </form>
+    <div *ngIf="tax">
+        Your total tax is {{tax.tax | currency:'INR'}}
+    </div>
 </div>

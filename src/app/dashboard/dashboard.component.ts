@@ -10,6 +10,7 @@ import { TaxCalculatorService } from '../tax-calculator.service';
 export class DashboardComponent implements OnInit {
 
   formgroup: FormGroup;
+  tax: any;
 
   constructor(private formBuilder: FormBuilder, private taxCalulcatorService: TaxCalculatorService) {
   }
@@ -29,12 +30,22 @@ export class DashboardComponent implements OnInit {
   }
 
   onFormSubmit(form): void {
-/*     if (!form.valid) {
-      return;
-    } else { */
-      console.log('form', form);
-      const tax = this.taxCalulcatorService.getTax(form.grossIncome, form.regime);
-      console.log('tax:: ', tax);
-    // }
+    if (!form.valid) {
+      this.validateAllFormFields(form);
+    } else {
+      const formValue = form.value;
+      this.tax = this.taxCalulcatorService.getTax(formValue.grossIncome, formValue.regime);
+    }
+  }
+
+  validateAllFormFields(formGroup: FormGroup) {         //{1}
+    Object.keys(formGroup.controls).forEach(field => {  //{2}
+      const control = formGroup.get(field);             //{3}
+      if (control instanceof FormControl) {             //{4}
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {        //{5}
+        this.validateAllFormFields(control);            //{6}
+      }
+    });
   }
 }

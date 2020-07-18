@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardComponent } from './dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -10,7 +11,7 @@ describe('DashboardComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DashboardComponent ],
-      imports: [ReactiveFormsModule]
+      imports: [ReactiveFormsModule, MatFormFieldModule]
     })
     .compileComponents();
   }));
