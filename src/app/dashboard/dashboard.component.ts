@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm, FormControl } from '@angular/forms';
-import { TaxCalculatorService } from '../tax-calculator.service';
+import { TaxCalculatorService } from '../services/tax-calculator.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +11,9 @@ export class DashboardComponent implements OnInit {
 
   formgroup: FormGroup;
   tax: any;
+  surcharge: number;
+  cess: number;
+  totalTax: number;
 
   constructor(private formBuilder: FormBuilder, private taxCalulcatorService: TaxCalculatorService) {
   }
@@ -35,16 +38,19 @@ export class DashboardComponent implements OnInit {
     } else {
       const formValue = form.value;
       this.tax = this.taxCalulcatorService.getTax(formValue.grossIncome, formValue.regime);
+      this.surcharge = 0.02 * this.tax.tax;
+      this.cess = 0.02 * this.tax.tax;
+      this.totalTax = this.tax.tax + this.surcharge + this.cess;
     }
   }
 
-  validateAllFormFields(formGroup: FormGroup) {         //{1}
-    Object.keys(formGroup.controls).forEach(field => {  //{2}
-      const control = formGroup.get(field);             //{3}
-      if (control instanceof FormControl) {             //{4}
+  validateAllFormFields(formGroup: FormGroup) {         // {1}
+    Object.keys(formGroup.controls).forEach(field => {  // {2}
+      const control = formGroup.get(field);             // {3}
+      if (control instanceof FormControl) {             // {4}
         control.markAsTouched({ onlySelf: true });
-      } else if (control instanceof FormGroup) {        //{5}
-        this.validateAllFormFields(control);            //{6}
+      } else if (control instanceof FormGroup) {        // {5}
+        this.validateAllFormFields(control);            // {6}
       }
     });
   }

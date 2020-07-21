@@ -88,17 +88,38 @@
                         required!!</span>
                 </mat-error>
             </div>
-            <div class="regimeSelected">
+            <!-- <div class="regimeSelected">
                 <mat-label>Income Tax Regime:</mat-label>
                 <mat-radio-group ngDefaultControl formControlName="regime">
-                    <mat-radio-button value="old">Old Regime (2012-2019)</mat-radio-button>
-                    <mat-radio-button value="new">New Regime (2020+)</mat-radio-button>
+                    <mat-radio-button matInput value="old">Old Regime (2012-2019)</mat-radio-button>
+                    <mat-radio-button matInput value="new">New Regime (2020+)</mat-radio-button>
                 </mat-radio-group>
-            </div>
+            </div> -->
         </fieldset>
         <button mat-raised-button color="primary">Submit</button>
     </form>
     <div *ngIf="tax">
-        Your total tax is {{tax.tax | currency:'INR'}}
+        <table>
+            <thead>
+                <th>Particular</th>
+                <th>Amount</th>
+            </thead>
+            <tr>
+                <td>Income Tax</td>
+                <td align="right">{{tax.tax | currency:'INR'}}</td>
+            </tr>
+            <tr>
+                <td>Surchage</td>
+                <td align="right">{{surcharge | currency:'INR'}}</td>
+            </tr>
+            <tr>
+                <td>Cess</td>
+                <td align="right"> {{cess | currency:'INR'}}</td>
+            </tr>
+            <tr>
+                <td>Total tax</td>
+                <td align="right"> {{totalTax | currency:'INR'}}</td>
+            </tr>
+        </table>
     </div>
 </div>
