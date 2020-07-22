@@ -7,8 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'whatismytax';
-
-  getCurrentYear(): number {
-    return new Date().getFullYear();
-  }
 }
