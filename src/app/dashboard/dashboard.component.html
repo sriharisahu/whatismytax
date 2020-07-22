@@ -1,0 +1,125 @@
+<div class="user-input">
+    <form [formGroup]="formgroup" (ngSubmit)="onFormSubmit(formgroup)">
+        <fieldset>
+            <div class="firstNameField">
+                <mat-form-field>
+                    <mat-label>First Name:</mat-label>
+                    <input type="text" matInput formControlName="firstName" placeholder="First Name">
+                </mat-form-field>
+                <mat-error *ngIf="!formgroup.get('firstName').valid && formgroup.get('firstName').touched">
+                    <span *ngIf="formgroup.get('firstName').hasError('required')">First Name is required!!</span>
+                </mat-error>
+            </div>
+            <div class="middleNameField">
+                <mat-form-field>
+                    <mat-label>Middle Name:</mat-label>
+                    <input type="text" matInput formControlName="middleName" placeholder="First Name">
+                </mat-form-field>
+                <mat-error *ngIf="!formgroup.get('middleName').valid && formgroup.get('middleName').touched">
+                    <span *ngIf="formgroup.get('middleName').hasError('pattern')">Middle Name can have only
+                        alphabet</span>
+                </mat-error>
+            </div>
+            <div class="lastNameField">
+                <mat-form-field>
+                    <mat-label>Last Name:</mat-label>
+                    <input type="text" matInput formControlName="lastName" placeholder="Last Name">
+                </mat-form-field>
+                <mat-error *ngIf="!formgroup.get('lastName').valid && formgroup.get('lastName').touched">
+                    <span *ngIf="formgroup.get('lastName').errors.required">Last Name is required!!</span>
+                </mat-error>
+            </div>
+            <div class="addressField">
+                <mat-form-field>
+                    <mat-label>Address:</mat-label>
+                    <textarea matInput formControlName="address" placeholder="Address"></textarea>
+                </mat-form-field>
+                <mat-error *ngIf="!formgroup.get('address').valid && formgroup.get('address').touched">
+                    <span *ngIf="formgroup.get('address').hasError('required')">Address is required!!</span>
+                    <span *ngIf="formgroup.get('address').hasError('minlength')">Address should having minimum of 30
+                        characters.</span>
+                    <span *ngIf="formgroup.get('address').hasError('maxlength')">Address can have a maximum of 100
+                        characters.</span>
+                </mat-error>
+            </div>
+            <div class="dateOfBirthField">
+                <mat-form-field>
+                    <mat-label>Date of Birth:</mat-label>
+                    <input type="text" matInput formControlName="dateOfBirth" placeholder="dd/mm/yyyy"
+                        [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-error *ngIf="!formgroup.get('dateOfBirth').valid && formgroup.get('dateOfBirth').touched">
+                    <span *ngIf="formgroup.get('dateOfBirth').hasError('required')">Date Of Birth is required!!</span>
+                </mat-error>
+            </div>
+            <div class="emailField">
+                <mat-form-field>
+                    <mat-label>Email:</mat-label>
+                    <input type="email" matInput formControlName="email" placeholder="abc@company.com">
+                </mat-form-field>
+                <mat-error *ngIf="!formgroup.get('email').valid && formgroup.get('email').touched">
+                    <span *ngIf="formgroup.get('email').hasError('required')">Email is required!!</span>
+                    <span *ngIf="formgroup.get('email').hasError('email')">Please enter a proper email address.</span>
+                </mat-error>
+            </div>
+            <div class="phoneField">
+                <mat-form-field>
+                    <mat-label>Phone:</mat-label>
+                    <input type="tel" matInput formControlName="phone" placeholder="987654321">
+                    <span matPrefix>+91-&nbsp;</span>
+                </mat-form-field>
+                <mat-error *ngIf="!formgroup.get('phone').valid && formgroup.get('phone').touched">
+                    <span *ngIf="formgroup.get('phone').hasError('phone')">Phone Number is required!!</span>
+                    <span *ngIf="formgroup.get('phone').hasError('pattern')">Please enter a valid Indian telephone
+                        number.</span>
+                </mat-error>
+            </div>
+            <div class="grossIncomeField">
+                <mat-form-field>
+                    <mat-label>Gross Annual Income:</mat-label>
+                    <input type="number" matInput formControlName="grossIncome">
+                    <span matPrefix>&#8377;&nbsp;</span>
+                    <span matSuffix>.00</span>
+                </mat-form-field>
+                <mat-error *ngIf="!formgroup.get('grossIncome').valid && formgroup.get('grossIncome').touched">
+                    <span *ngIf="formgroup.get('grossIncome').hasError('required')">Gross Annual Income is
+                        required!!</span>
+                </mat-error>
+            </div>
+            <div class="regimeSelected">
+                <mat-label>Income Tax Regime:</mat-label>
+                <mat-radio-group ngDefaultControl formControlName="regime">
+                    <mat-radio-button matInput value="old">Old Regime (2012-2019)</mat-radio-button>
+                    <mat-radio-button matInput value="new">New Regime (2020+)</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </fieldset>
+        <button mat-raised-button color="primary">Submit</button>
+    </form>
+    <div *ngIf="tax">
+        <table>
+            <thead>
+                <th>Particular</th>
+                <th>Amount</th>
+            </thead>
+            <tr>
+                <td>Income Tax</td>
+                <td align="right">{{tax.tax | currency:'INR'}}</td>
+            </tr>
+            <tr>
+                <td>Surchage</td>
+                <td align="right">{{surcharge | currency:'INR'}}</td>
+            </tr>
+            <tr>
+                <td>Cess</td>
+                <td align="right"> {{cess | currency:'INR'}}</td>
+            </tr>
+            <tr>
+                <td>Total tax</td>
+                <td align="right"> {{totalTax | currency:'INR'}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

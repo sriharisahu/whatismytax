@@ -1,12 +1,14 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        MatToolbarModule
       ],
       declarations: [
         AppComponent
@@ -26,10 +28,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('whatismytax');
   });
 
-  it('should render title', () => {
+  it('should return current year', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('whatismytax app is running!');
+    const app = fixture.componentInstance;
+    const currentYear = new Date().getFullYear();
+    expect(app.getCurrentYear()).toEqual(currentYear);
   });
 });
