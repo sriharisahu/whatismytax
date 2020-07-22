@@ -11,7 +11,8 @@
     "dev:ssr": "ng run whatismytax:serve-ssr",
     "serve:ssr": "node dist/whatismytax/server/main.js",
     "build:ssr": "ng build --prod && ng run whatismytax:server:production",
-    "prerender": "ng run whatismytax:prerender"
+    "prerender": "ng run whatismytax:prerender",
+    "publish": "ng build --prod --baseHref='https://sriharisahu.github.io/whatismytax'"
   },
   "private": true,
   "dependencies": {
