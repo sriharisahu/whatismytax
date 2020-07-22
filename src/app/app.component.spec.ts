@@ -28,13 +28,6 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('whatismytax');
   });
 
-  xit('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('whatismytax app is running!');
-  });
-
   it('should return current year', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;

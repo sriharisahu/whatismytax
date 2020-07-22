@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, NgForm, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { TaxCalculatorService } from '../services/tax-calculator.service';
 
 @Component({
@@ -54,4 +54,5 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+
 }
