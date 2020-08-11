@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test --code-coverage --watch=false",
+    "test": "ng test",
+    "test-headless": "npm test -- --code-coverage --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "publish": "ng build --prod --baseHref='https://sriharisahu.github.io/whatismytax/'"
