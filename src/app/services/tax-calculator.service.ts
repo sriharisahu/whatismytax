@@ -28,21 +28,23 @@ export class TaxCalculatorService {
 
   getTax(income: number, regime: 'old' | 'new'): any {
     let tax = 0;
+    const cumulativeTax = [];
     const slabValue = 250000;
     const quotient = Math.floor(income / slabValue);
     const remainder = (income - (slabValue * quotient)) % slabValue;
     const selectedtaxRates = (regime === 'old') ? this.oldTaxRates : this.newTaxRates;
     for (let i = 0; i < (quotient <= selectedtaxRates.length ? quotient : selectedtaxRates.length); i++) {
-      tax += slabValue * selectedtaxRates[i];
+      cumulativeTax[i] = slabValue * selectedtaxRates[i];
     }
     if (quotient > 0 && remainder > 0) {
       if (quotient < selectedtaxRates.length ){
-        tax += remainder * selectedtaxRates[quotient];
+        cumulativeTax.push(remainder * selectedtaxRates[quotient]);
       } else {
-        tax += (remainder + (slabValue * Math.floor(quotient - 6))) * selectedtaxRates[selectedtaxRates.length - 1];
+        cumulativeTax.push((remainder + (slabValue * Math.floor(quotient - 6))) * selectedtaxRates[selectedtaxRates.length - 1]);
       }
     }
+    tax = cumulativeTax.reduce((a, b) => a + b);
     tax = Math.round((tax + Number.EPSILON) * 100) / 100;
-    return { quotient, remainder, tax };
+    return { quotient, remainder, tax , cumulativeTax, selectedtaxRates};
   }
 }
