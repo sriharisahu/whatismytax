@@ -115,11 +115,23 @@
               "devServerTarget": "whatismytax:serve:production"
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "e840ef62-5854-4299-a781-ce3a7c958c6f"
+    "analytics": "e840ef62-5854-4299-a781-ce3a7c958c6f",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
