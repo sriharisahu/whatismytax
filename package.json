@@ -9,7 +9,7 @@
     "test-headless": "npm test -- --code-coverage --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "publish": "ng build --configuration production --baseHref='https://sriharisahu.github.io/whatismytax/'"
+    "publish": "ng build --configuration production --output-path docs --base-href /whatismytax/"
   },
   "private": true,
   "dependencies": {
