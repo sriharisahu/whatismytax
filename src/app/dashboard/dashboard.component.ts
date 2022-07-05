@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from '@angular/forms';
 import { TaxCalculatorService } from '../services/tax-calculator.service';
 
 @Component({
@@ -9,13 +9,13 @@ import { TaxCalculatorService } from '../services/tax-calculator.service';
 })
 export class DashboardComponent implements OnInit {
 
-  formgroup: FormGroup;
+  formgroup: UntypedFormGroup;
   tax: any;
   surcharge: number;
   cess: number;
   totalTax: number;
 
-  constructor(private formBuilder: FormBuilder, private taxCalulcatorService: TaxCalculatorService) {
+  constructor(private formBuilder: UntypedFormBuilder, private taxCalulcatorService: TaxCalculatorService) {
   }
 
   ngOnInit(): void {
@@ -44,12 +44,12 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  validateAllFormFields(formGroup: FormGroup) {         // {1}
+  validateAllFormFields(formGroup: UntypedFormGroup) {         // {1}
     Object.keys(formGroup.controls).forEach(field => {  // {2}
       const control = formGroup.get(field);             // {3}
-      if (control instanceof FormControl) {             // {4}
+      if (control instanceof UntypedFormControl) {             // {4}
         control.markAsTouched({ onlySelf: true });
-      } else if (control instanceof FormGroup) {        // {5}
+      } else if (control instanceof UntypedFormGroup) {        // {5}
         this.validateAllFormFields(control);            // {6}
       }
     });
