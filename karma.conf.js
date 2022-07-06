@@ -23,6 +23,7 @@ module.exports = function (config) {
         { type: 'text-summary' },
         { type: 'lcovonly'}
       ],
+      fixWebpackSourcePaths: true
     },
     reporters: ['progress', 'kjhtml', 'coverage'],
     port: 9876,
