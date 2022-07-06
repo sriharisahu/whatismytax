@@ -10,18 +10,21 @@ module.exports = function (config) {
       require('karma-coverage'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
-      require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    coverageIstanbulReporter: {
+    coverageReporter: {
       dir: require('path').join(__dirname, './coverage/whatismytax'),
-      reports: ['html', 'lcovonly', 'text-summary'],
-      fixWebpackSourcePaths: true
+      subdir: '.',
+      reporters: [
+        { type: 'html' },
+        { type: 'text-summary' },
+        { type: 'lcovonly'}
+      ],
     },
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['progress', 'kjhtml', 'coverage'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
